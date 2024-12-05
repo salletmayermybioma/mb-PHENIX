@@ -26,10 +26,10 @@ class MBPhenixScaler(BaseEstimator, TransformerMixin):
       Returns:
         self (Scaler): The fitted scaler object.
       """
-      if self.columns == None:
-        relevant_columns = X.loc[:, ~X.columns.isin(self.ignored_features)]
-        self.columns = [c for c in relevant_columns.columns]
-        self._fit_not_ignored(relevant_columns, y)
+      relevant_columns = X.loc[:, ~X.columns.isin(self.ignored_features)]
+      self.columns = [c for c in relevant_columns.columns]
+      self._fit_not_ignored(relevant_columns, y)
+      
       return self
 
   def _fit_not_ignored(self, X, y=None, t=3, decay=1, metric='euclidean', knn=10):
